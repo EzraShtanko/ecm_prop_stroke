@@ -76,6 +76,15 @@ var area									: Area3D = null
 
 var stored_position: Vector3
 
+
+class Reconfig extends mio.Reconfig:
+	var x: PropStroke
+	func _init(_x): x = _x
+	func _process() -> void: 
+		x._spawn()
+var reconfig: Reconfig = Reconfig.new(self)
+
+
 func _ready() -> void:
 	rng = RandomNumberGenerator.new()
 	mms = []
@@ -103,7 +112,7 @@ func _physics_process(_delta: float) -> void:
 	if not Engine.is_editor_hint(): return
 	if (stored_position - global_position).length() > 0.02:
 		stored_position = global_position
-		_spawn()
+		reconfig.post()
 
 
 func _spawn() -> void:
