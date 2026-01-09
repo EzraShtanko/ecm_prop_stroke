@@ -97,6 +97,8 @@ func _ready() -> void:
 	
 	
 	if Engine.is_editor_hint():	
+		if curve:
+			if not curve.changed.is_connected(_spawn): curve.changed.connect(_spawn)
 		if fill_tint:
 			if not fill_tint.changed.is_connected(_spawn): fill_tint.changed.connect(_spawn)
 		if density_curve:
