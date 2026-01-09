@@ -241,6 +241,7 @@ func _spawn_colliders() -> void:
 func _make_unique() -> void:
 	curve = curve.duplicate()
 	
+	curve.changed.connect(_spawn)
 	if fill_tint: fill_tint = fill_tint.duplicate(true)
 	if density_curve: density_curve = density_curve.duplicate(true)
 	if jitter_scale_curve: jitter_scale_curve = jitter_scale_curve.duplicate(true)
