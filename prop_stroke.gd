@@ -111,6 +111,7 @@ func _ready() -> void:
 			if not jitter_tangent_curve.changed.is_connected(_spawn): jitter_tangent_curve.changed.connect(_spawn)
 
 func _physics_process(_delta: float) -> void:
+	reconfig.process()
 	if not Engine.is_editor_hint(): return
 	if (stored_position - global_position).length() > 0.02:
 		stored_position = global_position
