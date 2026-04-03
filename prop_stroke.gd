@@ -12,6 +12,10 @@ const EDIT_HEIGHT: float = 32.
 @export var item_count: int = 32:
 	set(v): item_count = v; if is_node_ready(): _spawn()
 @export var fill_tint: Gradient
+@export_range(0., 1.) var tint_jitter_r: float = 0.
+@export_range(0., 1.) var tint_jitter_g: float = 0.
+@export_range(0., 1.) var tint_jitter_b: float = 0.
+@export_range(0., 1.) var tint_jitter_a: float = 0.
 @export_range(1000, 2000) var seed: int = 1000:
 	set(v):	
 		seed = v; 
@@ -186,6 +190,11 @@ func _spawn() -> void:
 	
 		mms[idx_mm[i]].multimesh.set_instance_transform(iter_mm[idx_mm[i]], t)
 		var sampled_color: Color = fill_tint.sample(clampf(1. - lateral_value, 0., 1.))
+		sampled_color.r += rng.randf_range(-tint_jitter_r, tint_jitter_r) if tint_jitter_r > 0. else 0.
+		sampled_color.g += rng.randf_range(-tint_jitter_g, tint_jitter_g) if tint_jitter_g > 0. else 0.
+		sampled_color.b += rng.randf_range(-tint_jitter_b, tint_jitter_b) if tint_jitter_b > 0. else 0.
+		sampled_color.a += rng.randf_range(-tint_jitter_a, tint_jitter_a) if tint_jitter_a > 0. else 0.
+		
 		mms[idx_mm[i]].multimesh.set_instance_color(iter_mm[idx_mm[i]], sampled_color)
 		mms[idx_mm[i]].multimesh.set_instance_custom_data(iter_mm[idx_mm[i]], Color(randf(), randf(), 0., 0.))
 		iter_mm[idx_mm[i]] += 1
