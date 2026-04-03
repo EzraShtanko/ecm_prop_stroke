@@ -12,10 +12,14 @@ const EDIT_HEIGHT: float = 32.
 @export var item_count: int = 32:
 	set(v): item_count = v; if is_node_ready(): _spawn()
 @export var fill_tint: Gradient
-@export_range(0., 1.) var tint_jitter_r: float = 0.
-@export_range(0., 1.) var tint_jitter_g: float = 0.
-@export_range(0., 1.) var tint_jitter_b: float = 0.
-@export_range(0., 1.) var tint_jitter_a: float = 0.
+@export_range(0., 1.) var tint_jitter_r: float = 0.:
+	set(v): tint_jitter_r = v; if is_node_ready(): _spawn()
+@export_range(0., 1.) var tint_jitter_g: float = 0.:
+	set(v): tint_jitter_g = v; if is_node_ready(): _spawn()
+@export_range(0., 1.) var tint_jitter_b: float = 0.:
+	set(v): tint_jitter_b = v; if is_node_ready(): _spawn()
+@export_range(0., 1.) var tint_jitter_a: float = 0.:
+	set(v): tint_jitter_a = v; if is_node_ready(): _spawn()
 @export_range(1000, 2000) var seed: int = 1000:
 	set(v):	
 		seed = v; 
